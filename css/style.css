@@ -88,7 +88,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    margin-top: 120px;
+    height: calc(100vh - 120px);
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
     background-size: cover;
     background-position: center;
@@ -244,20 +245,36 @@ ul {
 
 /* Programme Section */
 .programme {
-    padding: 5rem 5%;
     background-color: var(--light-bg);
+    padding: 6rem 5%;
+    position: relative;
+    z-index: 1;
 }
 
 .programme h2 {
     text-align: center;
     color: var(--secondary-color);
     margin-bottom: 3rem;
-    font-size: 2.2rem;
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.programme h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background-color: var(--primary-color);
 }
 
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -270,10 +287,10 @@ ul {
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     text-align: center;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    transform: translateY(20px);
     position: relative;
     overflow: hidden;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .event-card:hover {
@@ -297,14 +314,11 @@ ul {
     opacity: 1;
 }
 
-.event-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .event-card h3 {
     color: var(--primary-color);
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
+    font-weight: 500;
 }
 
 .event-card ul {
@@ -317,10 +331,41 @@ ul {
     margin-bottom: 1rem;
     padding: 0.5rem 0;
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .event-card li:last-child {
     border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .programme {
+        padding: 4rem 5%;
+    }
+
+    .programme h2 {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .event-card {
+        padding: 1.5rem;
+    }
+
+    .event-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .event-card li {
+        font-size: 1rem;
+    }
 }
 
 /* Formulaire d'inscription */
@@ -796,5 +841,84 @@ footer {
     
     .transport-content {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Countdown Styles */
+.countdown-container {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(44, 62, 80, 0.1));
+    padding: 1rem 0;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.countdown-number {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.countdown-label {
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+    .countdown-container {
+        top: 60px;
+        padding: 0.8rem 0;
+    }
+
+    .countdown {
+        gap: 1rem;
+    }
+
+    .countdown-item {
+        min-width: 60px;
+    }
+
+    .countdown-number {
+        font-size: 1.8rem;
+    }
+
+    .countdown-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajustement de la section hero pour le compte à rebours */
+@media (max-width: 768px) {
+    .hero {
+        margin-top: 100px;
+        height: calc(100vh - 100px);
     }
 } 
